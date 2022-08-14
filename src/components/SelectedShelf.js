@@ -1,4 +1,4 @@
-const SelectedShelf = () => {
+const SelectedShelf = ({ book }) => {
   return (
     <div>
       {/* <div className="book-shelf-changer"> */}

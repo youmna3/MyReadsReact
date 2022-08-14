@@ -1,5 +1,5 @@
 import Shelves from "../components/Shelves";
-const Home = () => {
+const Home = ({ books }) => {
   return (
     <div className="list-books">
       <div className="list-books-title"></div>
@@ -8,14 +8,14 @@ const Home = () => {
       </div>
       <div className="list-books-content">
         <div>
-          <Shelves />
-          <Shelves />
-          <Shelves />
+          <Shelves books={books} />
+          <Shelves books={books} />
+          <Shelves books={books} />
         </div>
       </div>
 
-      <div className="book-title">To Kill a Mockingbird</div>
-      <div className="book-authors">Harper Lee</div>
+      {/* <div className="book-title"></div>
+      <div className="book-authors"></div> */}
     </div>
   );
 };
