@@ -1,8 +1,12 @@
-const SelectedShelf = ({ book }) => {
+const SelectedShelf = ({ book, bookStatus }) => {
+  const eventChangeHandler = (book, event) => {
+    bookStatus(book, event.target.value);
+    console.log(book, event.target.value);
+  };
   return (
     <div>
       {/* <div className="book-shelf-changer"> */}
-      <select>
+      <select onChange={eventChangeHandler}>
         <option value="none" disabled>
           Move to...
         </option>

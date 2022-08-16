@@ -7,27 +7,31 @@ function App() {
   const [books, setBooks] = useState([]);
   console.log(books);
   //get the books from the api
+
   useEffect(() => {
-    BooksAPI.getAll().then((books) => setBooks(books));
+    //setIsLoading(true);
+    const getBooks = async () => {
+      const res = await BooksAPI.getAll();
+      setBooks(res);
+      //setIsLoading(false);
+    };
+
+    getBooks();
   }, []);
-  // const shelves = async (book, shelf) => {
-  //   await BooksAPI.update(book, shelf);
-  //   const xeby = await BooksAPI.getAll();
-  //   setBooks(xeby);
-  // };
-  // shelves();
-  // const updateBooksList = async (book, shelf) => {
-  //   await BooksAPI.update(book, shelf);
-  //   const updatedBooks = await BooksAPI.getAll();
-  //   setBooks(updatedBooks);
-  // };
+
+  //Update the list of books
+  const updateBooksList = async (book, shelf) => {
+    await BooksAPI.update(book, shelf);
+    const updatedBooks = await BooksAPI.getAll();
+    setBooks(updatedBooks);
+  };
 
   return (
     <div className="app">
       {/* <div className="open-search">
             <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a>
           </div> */}
-      <Home books={books} bookStatus={() => {}} />
+      <Home books={books} bookStatus={updateBooksList} />
       <Search />
     </div>
   );

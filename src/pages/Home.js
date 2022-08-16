@@ -10,15 +10,22 @@ const Home = ({ books, bookStatus }) => {
         <div>
           <Shelves
             status="Currently Reading"
+            type="currentlyReading"
             books={books}
             bookStatus={bookStatus}
           />
           <Shelves
             status="Want To Read"
+            type="wantToRead"
             books={books}
             bookStatus={bookStatus}
           />
-          <Shelves status="Read" books={books} bookStatus={bookStatus} />
+          <Shelves
+            status="Read"
+            type="read"
+            books={books}
+            bookStatus={bookStatus}
+          />
         </div>
       </div>
 
