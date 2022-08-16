@@ -1,5 +1,5 @@
 import Shelves from "../components/Shelves";
-const Home = ({ books }) => {
+const Home = ({ books, bookStatus }) => {
   return (
     <div className="list-books">
       <div className="list-books-title"></div>
@@ -8,9 +8,17 @@ const Home = ({ books }) => {
       </div>
       <div className="list-books-content">
         <div>
-          <Shelves books={books} />
-          <Shelves books={books} />
-          <Shelves books={books} />
+          <Shelves
+            status="Currently Reading"
+            books={books}
+            bookStatus={bookStatus}
+          />
+          <Shelves
+            status="Want To Read"
+            books={books}
+            bookStatus={bookStatus}
+          />
+          <Shelves status="Read" books={books} bookStatus={bookStatus} />
         </div>
       </div>
 

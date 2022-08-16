@@ -1,5 +1,5 @@
 import SelectedShelf from "./SelectedShelf";
-const Book = ({ book }) => {
+const Book = ({ book, bookStatus }) => {
   const bookCover = book.imageLinks.smallThumbnail;
   return (
     <li key={book.id}>
@@ -14,7 +14,7 @@ const Book = ({ book }) => {
             }}
           >
             <div className="book-shelf-changer">
-              <SelectedShelf book={book} />
+              <SelectedShelf book={book} bookStatus={bookStatus} />
             </div>
           </div>
         </div>
