@@ -1,16 +1,16 @@
 import PropTypes from "prop-types";
 const SelectedShelf = ({ book, bookStatus }) => {
-  const shelfChangeHandler = (book, event) => {
-    bookStatus(book, event);
-    console.log(book, event);
+  const shelfChangeHandler = (event) => {
+    bookStatus(book, event.target.value);
   };
   return (
     <div>
       {/* <div className="book-shelf-changer"> */}
       {/* <select value={book.shelf ? book.shelf : "none"} onChange={bookStatus}> */}
       <select
-        onChange={shelfChangeHandler}
         value={book.shelf ? book.shelf : "none"}
+        // onChange={(e) => bookStatus(book, e.target.value)}
+        onChange={shelfChangeHandler}
       >
         {/* <option value="none" disabled> */}
         <option value="" disabled>

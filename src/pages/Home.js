@@ -1,7 +1,7 @@
 import Shelves from "../components/Shelves";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-const Home = ({ books, bookStatus, onNavigate }) => {
+const Home = ({ books, bookStatus }) => {
   return (
     <div className="list-books">
       <div className="list-books-title">

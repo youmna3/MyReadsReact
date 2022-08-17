@@ -1,6 +1,11 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-const Search = ({ books, bookStatus }) => {
+
+const Search = ({ books, bookStatus, query, searchBooks, showingbooks }) => {
+  console.log(query);
+  const searchChangeHandler = (event) => {
+    searchBooks(event.target.value);
+  };
   return (
     <div>
       <div className="search-books">
@@ -10,7 +15,13 @@ const Search = ({ books, bookStatus }) => {
           </Link>
 
           <div className="search-books-input-wrapper">
-            <input type="text" placeholder="Search by title, author, or ISBN" />
+            {/* value={} onChange={} */}
+            <input
+              type="text"
+              placeholder="Search by title, author, or ISBN"
+              value={query}
+              onChange={searchChangeHandler}
+            />
           </div>
         </div>
         <div className="search-books-results">

@@ -6,9 +6,10 @@ import Search from "./pages/Search";
 import * as BooksAPI from "./BooksAPI";
 function App() {
   const [books, setBooks] = useState([]);
-  const [searchPage, setSearchPage] = useState("");
+  //const [searchResults, setSearchResults] = useState([]);
+  const [query, setQuery] = useState("");
   //const [isLoading, setIsLoading] = useState(false);
-  console.log(books);
+  //console.log(books);
 
   //get the books from the api
   useEffect(() => {
@@ -21,27 +22,43 @@ function App() {
 
     getBooks();
   }, []);
+  //users input in searchbpx
+  const updateQuery = (query) => {
+    // then calls setQuery() with the user's search query as the argument.
+    setQuery(query.trim());
+  };
+  const showingbooks =
+    query === " " ? books : books.filter((book) => book.name);
 
   //Update the list of books
-  // const updateBooksList = async (book, event) => {
-  //   book.shelf = event.target.value;
-  //   await BooksAPI.update(book, book.shelf);
-  //   //const updatedBooks = await BooksAPI.getAll(books);
-  //   setBooks(books.concat({ ...book, shelf: event.target.value }));
-  // };
+  const shelfChanger = async (book, shelf) => {
+    await BooksAPI.update(book, shelf);
+    setBooks(await BooksAPI.getAll(books));
+  };
 
   return (
     <div className="app">
       <Routes>
         <Route
           path="/"
-          element={<Home books={books} bookStatus={() => {}} />}
+          element={<Home books={books} bookStatus={shelfChanger} />}
         />
-        {/* {!isLoading && <Home books={books}  bookStatus={() => {}} />} */}
-        {/* {isLoading && <p>Loading...</p>} */}
+        {/* element={
+             !isLoading && <Home books={books} bookStatus={shelfChanger} /> &&
+             isLoading && <p>Loading...</p>
+           } */}
+
         <Route
           path="/search"
-          element={<Search books={books} bookStatus={() => {}} />}
+          element={
+            <Search
+              books={books}
+              bookStatus={() => {}}
+              query={query}
+              searchBooks={updateQuery}
+              showingbooks={showingbooks}
+            />
+          }
         />
       </Routes>
     </div>
