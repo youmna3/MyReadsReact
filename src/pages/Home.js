@@ -1,6 +1,7 @@
 import Shelves from "../components/Shelves";
 import PropTypes from "prop-types";
-const Home = ({ books, bookStatus }) => {
+import { Link } from "react-router-dom";
+const Home = ({ books, bookStatus, onNavigate }) => {
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -29,8 +30,10 @@ const Home = ({ books, bookStatus }) => {
         </div>
       </div>
 
-      {/* <div className="book-title"></div>
-      <div className="book-authors"></div> */}
+      <div className="open-search">
+        <Link to="/search">Add a book</Link>
+        {/* <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a> */}
+      </div>
     </div>
   );
 };

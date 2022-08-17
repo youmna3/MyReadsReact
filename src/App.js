@@ -1,13 +1,16 @@
 import "./App.css";
 import { useState, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import * as BooksAPI from "./BooksAPI";
 function App() {
   const [books, setBooks] = useState([]);
+  const [searchPage, setSearchPage] = useState("");
+  //const [isLoading, setIsLoading] = useState(false);
   console.log(books);
-  //get the books from the api
 
+  //get the books from the api
   useEffect(() => {
     //setIsLoading(true);
     const getBooks = async () => {
@@ -29,11 +32,18 @@ function App() {
 
   return (
     <div className="app">
-      <div className="open-search">
-        {/* <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a> */}
-      </div>
-      <Home books={books} bookStatus={() => {}} />
-      <Search books={books} bookStatus={() => {}} />
+      <Routes>
+        <Route
+          path="/"
+          element={<Home books={books} bookStatus={() => {}} />}
+        />
+        {/* {!isLoading && <Home books={books}  bookStatus={() => {}} />} */}
+        {/* {isLoading && <p>Loading...</p>} */}
+        <Route
+          path="/search"
+          element={<Search books={books} bookStatus={() => {}} />}
+        />
+      </Routes>
     </div>
   );
 }
