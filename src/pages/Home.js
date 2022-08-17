@@ -1,4 +1,5 @@
 import Shelves from "../components/Shelves";
+import PropTypes from "prop-types";
 const Home = ({ books, bookStatus }) => {
   return (
     <div className="list-books">
@@ -32,5 +33,10 @@ const Home = ({ books, bookStatus }) => {
       <div className="book-authors"></div> */}
     </div>
   );
+};
+
+Home.propTypes = {
+  books: PropTypes.array.isRequired,
+  bookStatus: PropTypes.func.isRequired,
 };
 export default Home;

@@ -1,4 +1,6 @@
-const Search = () => {
+import PropTypes from "prop-types";
+
+const Search = ({ books, bookStatus }) => {
   return (
     <div>
       <div className="search-books">
@@ -19,5 +21,9 @@ const Search = () => {
       </div>
     </div>
   );
+};
+Search.propTypes = {
+  books: PropTypes.array.isRequired,
+  bookStatus: PropTypes.func.isRequired,
 };
 export default Search;

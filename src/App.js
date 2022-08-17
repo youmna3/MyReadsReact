@@ -33,7 +33,7 @@ function App() {
         {/* <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a> */}
       </div>
       <Home books={books} bookStatus={() => {}} />
-      <Search />
+      <Search books={books} bookStatus={() => {}} />
     </div>
   );
 }

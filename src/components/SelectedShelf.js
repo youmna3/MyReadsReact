@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 const SelectedShelf = ({ book, bookStatus }) => {
   const shelfChangeHandler = (book, event) => {
     bookStatus(book, event);
@@ -23,5 +24,9 @@ const SelectedShelf = ({ book, bookStatus }) => {
     </div>
     // </div>
   );
+};
+SelectedShelf.propTypes = {
+  book: PropTypes.object.isRequired,
+  bookStatus: PropTypes.func.isRequired,
 };
 export default SelectedShelf;

@@ -1,4 +1,5 @@
 import SelectedShelf from "./SelectedShelf";
+import PropTypes from "prop-types";
 const Book = ({ book, bookStatus }) => {
   const bookCover = book.imageLinks.smallThumbnail;
   return (
@@ -23,5 +24,9 @@ const Book = ({ book, bookStatus }) => {
       </div>
     </li>
   );
+};
+Book.propTypes = {
+  book: PropTypes.object.isRequired,
+  bookStatus: PropTypes.func.isRequired,
 };
 export default Book;
