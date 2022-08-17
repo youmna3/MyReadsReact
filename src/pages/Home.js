@@ -2,8 +2,7 @@ import Shelves from "../components/Shelves";
 const Home = ({ books, bookStatus }) => {
   return (
     <div className="list-books">
-      <div className="list-books-title"></div>
-      <div>
+      <div className="list-books-title">
         <h1>MyReads</h1>
       </div>
       <div className="list-books-content">

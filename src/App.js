@@ -20,18 +20,19 @@ function App() {
   }, []);
 
   //Update the list of books
-  const updateBooksList = async (book, shelf) => {
-    await BooksAPI.update(book, shelf);
-    const updatedBooks = await BooksAPI.getAll();
-    setBooks(updatedBooks);
-  };
+  // const updateBooksList = async (book, event) => {
+  //   book.shelf = event.target.value;
+  //   await BooksAPI.update(book, book.shelf);
+  //   //const updatedBooks = await BooksAPI.getAll(books);
+  //   setBooks(books.concat({ ...book, shelf: event.target.value }));
+  // };
 
   return (
     <div className="app">
-      {/* <div className="open-search">
-            <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a>
-          </div> */}
-      <Home books={books} bookStatus={updateBooksList} />
+      <div className="open-search">
+        {/* <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a> */}
+      </div>
+      <Home books={books} bookStatus={() => {}} />
       <Search />
     </div>
   );
