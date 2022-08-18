@@ -23,7 +23,6 @@ const Search = ({
           </Link>
 
           <div className="search-books-input-wrapper">
-            {/* value={} onChange={} */}
             <input
               type="text"
               placeholder="Search by title, author, or ISBN"
@@ -34,11 +33,11 @@ const Search = ({
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid"></ol>
-          {query &&
-            userInputResults.map((book) => (
+          <ol className="books-grid">
+            {userInputResults.map((book) => (
               <Book book={book} key={book.id} bookStatus={bookStatus} />
             ))}
+          </ol>
         </div>
       </div>
     </div>
