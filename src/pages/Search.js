@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 
 const Search = ({ books, bookStatus, query, searchBooks, showingbooks }) => {
   console.log(query);
-  const searchChangeHandler = (event) => {
+  const inputSearchHandler = (event) => {
     searchBooks(event.target.value);
+    //console.log(event.target.value);
   };
   return (
     <div>
@@ -20,7 +21,7 @@ const Search = ({ books, bookStatus, query, searchBooks, showingbooks }) => {
               type="text"
               placeholder="Search by title, author, or ISBN"
               value={query}
-              onChange={searchChangeHandler}
+              onChange={inputSearchHandler}
             />
           </div>
         </div>
@@ -34,5 +35,7 @@ const Search = ({ books, bookStatus, query, searchBooks, showingbooks }) => {
 Search.propTypes = {
   books: PropTypes.array.isRequired,
   bookStatus: PropTypes.func.isRequired,
+  query: PropTypes.string.isRequired,
+  searchBooks: PropTypes.func.isRequired,
 };
 export default Search;

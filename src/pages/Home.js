@@ -2,6 +2,7 @@ import Shelves from "../components/Shelves";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 const Home = ({ books, bookStatus }) => {
+  console.log(books);
   return (
     <div className="list-books">
       <div className="list-books-title">

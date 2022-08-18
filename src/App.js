@@ -22,26 +22,35 @@ function App() {
 
     getBooks();
   }, []);
+
   //users input in searchbpx
   const updateQuery = (query) => {
-    // then calls setQuery() with the user's search query as the argument.
+    //   // then calls setQuery() with the user's search query as the argument.
     setQuery(query.trim());
   };
+  // const inputSearchHandler = (event) => {
+  //   setQuery(query.trim(), event.target.value);
+  //   console.log(event.target.value);
+  // };
   const showingbooks =
-    query === " " ? books : books.filter((book) => book.name);
+    query === " " ? books : books.filter((book) => book.title);
 
-  //Update the list of books
-  const shelfChanger = async (book, shelf) => {
+  //edit the list of books from the database
+  const shelfChangerHomePage = async (book, shelf) => {
     await BooksAPI.update(book, shelf);
-    setBooks(await BooksAPI.getAll(books));
+    setBooks(await BooksAPI.getAll());
   };
 
+  const shelfChangerSearchPage = async (book, shelf) => {
+    await BooksAPI.update(book, shelf);
+    setBooks(await BooksAPI.getAll());
+  };
   return (
     <div className="app">
       <Routes>
         <Route
           path="/"
-          element={<Home books={books} bookStatus={shelfChanger} />}
+          element={<Home books={books} bookStatus={shelfChangerHomePage} />}
         />
         {/* element={
              !isLoading && <Home books={books} bookStatus={shelfChanger} /> &&
@@ -53,7 +62,7 @@ function App() {
           element={
             <Search
               books={books}
-              bookStatus={() => {}}
+              bookStatus={shelfChangerSearchPage}
               query={query}
               searchBooks={updateQuery}
               showingbooks={showingbooks}
