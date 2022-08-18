@@ -23,23 +23,23 @@ function App() {
     getBooks();
   }, []);
 
+  useEffect(() => {
+    const getBooksForSearch = async () => {
+      if (query) {
+        const res = await BooksAPI.search(query);
+        console.log(res);
+        // handle invalid queries
+        res.error ? setUserInputResults([]) : setUserInputResults(res);
+      }
+    };
+    getBooksForSearch();
+  }, [query]);
   const updateQuery = (query) => {
     setQuery(query);
     // if (query.trim() === " ") {
     //   setUserInputResults([]);
     // }
   };
-  useEffect(() => {
-    const getBooksForSearch = async () => {
-      if (query) {
-        const res = await BooksAPI.search(query); //data
-        console.log(res);
-        res.error ? setUserInputResults([]) : setUserInputResults(res);
-      }
-    };
-    getBooksForSearch();
-  }, [query]);
-
   // useEffect(() => {
   //   if (query) {
   //     BooksAPI.search(query).then((data) => {
