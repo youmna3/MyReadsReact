@@ -34,7 +34,7 @@ function App() {
       if (query) {
         const res = await BooksAPI.search(query); //data
         console.log(res);
-        res.error ? console.log(res) : setUserInputResults(res);
+        res.error ? setUserInputResults([]) : setUserInputResults(res);
       }
     };
     getBooksForSearch();
