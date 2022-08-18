@@ -3,13 +3,7 @@ import Book from "../components/Book";
 import { Link } from "react-router-dom";
 //import { useEffect } from "react";
 
-const Search = ({
-  books,
-  bookStatus,
-  query,
-  searchBooks,
-  userInputResults,
-}) => {
+const Search = ({ bookStatus, query, searchBooks, userInputResults }) => {
   const inputSearchHandler = (event) => {
     searchBooks(event.target.value);
     console.log(query);
@@ -34,9 +28,10 @@ const Search = ({
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {userInputResults.map((book) => (
-              <Book book={book} key={book.id} bookStatus={bookStatus} />
-            ))}
+            {query &&
+              userInputResults.map((book) => (
+                <Book book={book} key={book.id} bookStatus={bookStatus} />
+              ))}
           </ol>
         </div>
       </div>
@@ -44,7 +39,6 @@ const Search = ({
   );
 };
 Search.propTypes = {
-  books: PropTypes.array.isRequired,
   bookStatus: PropTypes.func.isRequired,
   query: PropTypes.string.isRequired,
   searchBooks: PropTypes.func.isRequired,

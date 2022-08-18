@@ -8,7 +8,7 @@ function App() {
   const [books, setBooks] = useState([]);
   const [userInputResults, setUserInputResults] = useState([]);
   const [query, setQuery] = useState("");
-  //const [isLoading, setIsLoading] = useState(false);
+
   //console.log(books);
 
   //get the books from the api
@@ -22,6 +22,13 @@ function App() {
 
     getBooks();
   }, []);
+
+  const updateQuery = (query) => {
+    setQuery(query);
+    // if (query.trim() === " ") {
+    //   setUserInputResults([]);
+    // }
+  };
   useEffect(() => {
     const getBooksForSearch = async () => {
       if (query) {
@@ -46,16 +53,11 @@ function App() {
   // }, [query]);
 
   //users input in searchbpx
-  const updateQuery = (query) => {
-    setQuery(query);
-  };
 
   // const inputSearchHandler = (event) => {
   //   setQuery(event.target.value);
   //   //   console.log(event.target.value);
   // };
-  // const showingbooks =
-  //   query === " " ? books : books.filter((book) => book.title);
 
   //edit the list of books from the database
   const shelfChangerHomePage = async (book, shelf) => {
