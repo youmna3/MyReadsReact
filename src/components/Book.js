@@ -1,7 +1,7 @@
 import SelectedShelf from "./SelectedShelf";
 import PropTypes from "prop-types";
 const Book = ({ book, bookStatus }) => {
-  const bookCover = book.imageLinks.smallThumbnail;
+  const bookCover = book.imageLinks ? book.imageLinks.smallThumbnail : "none";
   return (
     <li key={book.id}>
       <div className="book">
