@@ -8,16 +8,6 @@ const Search = ({ bookStatus, query, searchBooks, updatingShelf }) => {
 
     console.log(query);
   };
-  // const UpdatedShelf = userInputResults.map((s) => {
-  //   const book = books.find((b) => b.id === s.id);
-  //   return book ? { ...s, shelf: book.shelf } : s;
-  // });
-
-  // userInputResults.forEach((s) => {
-  //   books.forEach((book) => {
-  //     if (book.id === s.id) book.shelf = s.shelf;
-  //   });
-  // });
 
   return (
     <div>
@@ -61,6 +51,6 @@ Search.propTypes = {
   bookStatus: PropTypes.func.isRequired,
   query: PropTypes.string.isRequired,
   searchBooks: PropTypes.func.isRequired,
-  userInputResults: PropTypes.array.isRequired,
+  updatingShelf: PropTypes.array.isRequired,
 };
 export default Search;
