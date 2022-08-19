@@ -32,7 +32,7 @@ function App() {
         const res = await BooksAPI.search(query);
         console.log(res);
         // handle invalid queries
-        res.error ? setUserInputResults([]) : setUserInputResults();
+        res.error ? setUserInputResults([]) : setUserInputResults(res);
       }
     };
     getBooksForSearch();

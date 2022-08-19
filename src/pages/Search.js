@@ -14,10 +14,11 @@ const Search = ({
 
     console.log(query);
   };
-  // const UpdatedShelf = userInputResults.map((s) => {
-  //   const book = books.find((b) => b.id === s.id);
-  //   return book ? { ...s, shelf: s.shelf } : s;
-  // });
+  const UpdatedShelf = userInputResults.map((s) => {
+    const book = books.find((b) => b.id === s.id);
+    return book ? { ...s, shelf: book.shelf } : s;
+  });
+
   return (
     <div>
       <div className="search-books">
@@ -38,11 +39,11 @@ const Search = ({
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {userInputResults.length === 0 ? (
+            {UpdatedShelf.length === 0 ? (
               <p>No Books Found!</p>
             ) : (
               query &&
-              userInputResults.map((book) => (
+              UpdatedShelf.map((book) => (
                 <Book book={book} key={book.id} bookStatus={bookStatus} />
               ))
             )}
