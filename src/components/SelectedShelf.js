@@ -13,7 +13,7 @@ const SelectedShelf = ({ book, bookStatus }) => {
         onChange={shelfChangeHandler}
       >
         {/* <option value="none" disabled> */}
-        <option value="" disabled>
+        <option value="none" disabled>
           Move to...
         </option>
         <option value="currentlyReading">Currently Reading</option>

@@ -8,6 +8,7 @@ function App() {
   const [books, setBooks] = useState([]);
   const [userInputResults, setUserInputResults] = useState([]);
   const [query, setQuery] = useState("");
+  // const [updatingShelf, setUpdatingShelf] = useState(false);
 
   //console.log(books);
 
@@ -22,24 +23,21 @@ function App() {
 
     getBooks();
   }, []);
-
+  const updateQuery = (query) => {
+    setQuery(query);
+  };
   useEffect(() => {
     const getBooksForSearch = async () => {
       if (query) {
         const res = await BooksAPI.search(query);
         console.log(res);
         // handle invalid queries
-        res.error ? setUserInputResults([]) : setUserInputResults(res);
+        res.error ? setUserInputResults([]) : setUserInputResults();
       }
     };
     getBooksForSearch();
   }, [query]);
-  const updateQuery = (query) => {
-    setQuery(query);
-    // if (query.trim() === " ") {
-    //   setUserInputResults([]);
-    // }
-  };
+
   // useEffect(() => {
   //   if (query) {
   //     BooksAPI.search(query).then((data) => {
@@ -60,21 +58,22 @@ function App() {
   // };
 
   //edit the list of books from the database
-  const shelfChangerHomePage = async (book, shelf) => {
-    await BooksAPI.update(book, shelf);
-    setBooks(await BooksAPI.getAll());
-  };
 
-  const shelfChangerSearchPage = async (book, shelf) => {
+  const shelfChanger = async (book, shelf) => {
     await BooksAPI.update(book, shelf);
     setBooks(await BooksAPI.getAll());
   };
+  // const Updatedresults = userInputResults.map((result) => {
+  //   const book = books.find((item) => item.id === result.id);
+  //   return book ? { ...result, shelf: book.shelf } : result;
+  // });
+
   return (
     <div className="app">
       <Routes>
         <Route
           path="/"
-          element={<Home books={books} bookStatus={shelfChangerHomePage} />}
+          element={<Home books={books} bookStatus={shelfChanger} />}
         />
         {/* element={
              !isLoading && <Home books={books} bookStatus={shelfChanger} /> &&
@@ -86,10 +85,11 @@ function App() {
           element={
             <Search
               books={books}
-              bookStatus={shelfChangerSearchPage}
+              bookStatus={shelfChanger}
               query={query}
               searchBooks={updateQuery}
               userInputResults={userInputResults}
+              // updatingShelf={updatingShelf}
             />
           }
         />

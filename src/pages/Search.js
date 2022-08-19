@@ -1,13 +1,23 @@
 import PropTypes from "prop-types";
 import Book from "../components/Book";
 import { Link } from "react-router-dom";
-//import { useEffect } from "react";
 
-const Search = ({ bookStatus, query, searchBooks, userInputResults }) => {
+const Search = ({
+  books,
+  bookStatus,
+  query,
+  searchBooks,
+  userInputResults,
+}) => {
   const inputSearchHandler = (event) => {
     searchBooks(event.target.value);
+
     console.log(query);
   };
+  // const UpdatedShelf = userInputResults.map((s) => {
+  //   const book = books.find((b) => b.id === s.id);
+  //   return book ? { ...s, shelf: s.shelf } : s;
+  // });
   return (
     <div>
       <div className="search-books">
@@ -28,10 +38,18 @@ const Search = ({ bookStatus, query, searchBooks, userInputResults }) => {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {query &&
+            {userInputResults.length === 0 ? (
+              <p>No Books Found!</p>
+            ) : (
+              query &&
               userInputResults.map((book) => (
                 <Book book={book} key={book.id} bookStatus={bookStatus} />
-              ))}
+              ))
+            )}
+            {/* {query &&
+              userInputResults.map((book) => (
+                <Book book={book} key={book.id} bookStatus={bookStatus} />
+              ))} */}
           </ol>
         </div>
       </div>
