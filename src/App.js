@@ -14,11 +14,9 @@ function App() {
 
   //get the books from the api
   useEffect(() => {
-    //setIsLoading(true);
     const getBooks = async () => {
       const res = await BooksAPI.getAll();
       setBooks(res);
-      //setIsLoading(false);
     };
 
     getBooks();
@@ -38,6 +36,17 @@ function App() {
     getBooksForSearch();
   }, [query]);
 
+  // .forEach((s) => {
+  //   books.map((book) => {
+  //     if (book.id === s.id) book.shelf = s.shelf;
+  //   });
+  //   return s;
+  // })
+  // forEach((s) => {
+  //   books.forEach((book) => {
+  //     if (book.id === s.id) book.shelf = s.shelf;
+  //   });
+  // });
   // useEffect(() => {
   //   if (query) {
   //     BooksAPI.search(query).then((data) => {
@@ -63,10 +72,10 @@ function App() {
     await BooksAPI.update(book, shelf);
     setBooks(await BooksAPI.getAll());
   };
-  // const Updatedresults = userInputResults.map((result) => {
-  //   const book = books.find((item) => item.id === result.id);
-  //   return book ? { ...result, shelf: book.shelf } : result;
-  // });
+  const UpdatedShelf = userInputResults.map((s) => {
+    const book = books.find((b) => b.id === s.id);
+    return book ? { ...s, shelf: book.shelf } : s;
+  });
 
   return (
     <div className="app">
@@ -84,12 +93,10 @@ function App() {
           path="/search"
           element={
             <Search
-              books={books}
               bookStatus={shelfChanger}
               query={query}
               searchBooks={updateQuery}
-              userInputResults={userInputResults}
-              // updatingShelf={updatingShelf}
+              updatingShelf={UpdatedShelf}
             />
           }
         />

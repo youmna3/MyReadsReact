@@ -2,22 +2,22 @@ import PropTypes from "prop-types";
 import Book from "../components/Book";
 import { Link } from "react-router-dom";
 
-const Search = ({
-  books,
-  bookStatus,
-  query,
-  searchBooks,
-  userInputResults,
-}) => {
+const Search = ({ bookStatus, query, searchBooks, updatingShelf }) => {
   const inputSearchHandler = (event) => {
     searchBooks(event.target.value);
 
     console.log(query);
   };
-  const UpdatedShelf = userInputResults.map((s) => {
-    const book = books.find((b) => b.id === s.id);
-    return book ? { ...s, shelf: book.shelf } : s;
-  });
+  // const UpdatedShelf = userInputResults.map((s) => {
+  //   const book = books.find((b) => b.id === s.id);
+  //   return book ? { ...s, shelf: book.shelf } : s;
+  // });
+
+  // userInputResults.forEach((s) => {
+  //   books.forEach((book) => {
+  //     if (book.id === s.id) book.shelf = s.shelf;
+  //   });
+  // });
 
   return (
     <div>
@@ -39,11 +39,11 @@ const Search = ({
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {UpdatedShelf.length === 0 ? (
+            {updatingShelf.length === 0 ? (
               <p>No Books Found!</p>
             ) : (
               query &&
-              UpdatedShelf.map((book) => (
+              updatingShelf.map((book) => (
                 <Book book={book} key={book.id} bookStatus={bookStatus} />
               ))
             )}
